@@ -1,0 +1,151 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE=1
+
+d := debian/debian_defaults
+
+# default in this architecture:
+MPI=$(shell readlink /etc/alternatives/mpi | sed s%/usr/bin/%%g | sed s/mpicc\.//g )
+
+# availability of MPI implementations:
+
+OPENMPI_AVAILABLE_ARCHITECTURES := \
+	alpha \
+	amd64 \
+	arm64 \
+	armel \
+	armhf \
+	hppa \
+	hurd-i386 \
+	i386 \
+	ia64 \
+	kfreebsd-amd64 \
+	kfreebsd-i386 \
+	mips \
+	mips64el \
+	mipsel \
+	m68k \
+	powerpc \
+	powerpcspe \
+	ppc64 \
+	ppc64el \
+	riscv64 \
+	s390x \
+	sh4 \
+	sparc64 \
+	sw64 \
+	x32 \
+
+MPICH_AVAILABLE_ARCHITECTURES := \
+	alpha \
+	amd64 \
+	arm64 \
+	armel \
+	armhf \
+	hppa \
+	hurd-i386 \
+	i386 \
+	ia64 \
+	kfreebsd-amd64 \
+	kfreebsd-i386 \
+	m68k \
+	mips \
+	mips64el \
+	mipsel \
+	powerpc \
+	powerpcspe \
+	ppc64 \
+	ppc64el \
+	riscv64 \
+	s390x \
+	sh4 \
+	sparc64 \
+	sw64 \
+	x32 \
+
+
+# defaults
+
+OPENMPI_ARCHITECTURES := \
+	alpha \
+	amd64 \
+	arm64 \
+	armel \
+	armhf \
+	hppa \
+	hurd-i386 \
+	i386 \
+	ia64 \
+	kfreebsd-amd64 \
+	kfreebsd-i386 \
+	m68k \
+	mips \
+	mips64el \
+	mipsel \
+	powerpc \
+	powerpcspe \
+	ppc64 \
+	ppc64el \
+	riscv64 \
+	s390x \
+	sh4 \
+	sparc64 \
+	sw64 \
+	x32 \
+
+# uncomment the mpich lines in d/control.in if you are going to add something here again
+MPICH_ARCHITECTURES := \
+
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	echo "# Default MPI implementation on this architecture:" > $d
+	echo "ARCH_DEFAULT_MPI_IMPL=$(MPI)" >> $d
+	echo "# Architectures where OpenMPI is available:" >> $d
+	echo "OPENMPI_AVAILABLE_ARCHITECTURES=$(strip $(sort $(OPENMPI_AVAILABLE_ARCHITECTURES)))" >> $d
+	echo "# Architectures where MPICH is available:" >> $d
+	echo "MPICH_AVAILABLE_ARCHITECTURES=$(strip $(sort $(MPICH_AVAILABLE_ARCHITECTURES)))" >> $d
+	echo "# Architectures defaulting to OpenMPI:" >> $d
+	echo "OPENMPI_ARCHITECTURES=$(strip $(sort $(OPENMPI_ARCHITECTURES)))" >> $d
+	echo "# Architectures defaulting to MPICH:" >> $d
+	echo "MPICH_ARCHITECTURES=$(strip $(sort $(MPICH_ARCHITECTURES)))" >> $d
+
+override_dh_gencontrol:
+	rm -f debian/*.substvars
+	if [ "$(MPI)" = "openmpi" ]; then \
+	  echo "mpi=openmpi-bin" > debian/mpi-default-bin.substvars; \
+	  echo "mpi-dev=libopenmpi-dev" > debian/mpi-default-dev.substvars; \
+	elif [ "$(MPI)" = "mpich" ]; then \
+	  echo "mpi=mpich" > debian/mpi-default-bin.substvars; \
+	  echo "mpi-dev=libmpich-dev" > debian/mpi-default-dev.substvars; \
+	else \
+	  echo "Unknown MPI implementation, stopping"; \
+	  exit 1; \
+	fi
+	dh_gencontrol
+
+override_dh_install:
+	dh_install -pmpi-default-dev $d usr/share/mpi-default-dev/
+
+override_dh_clean:
+	dh_clean
+	@echo "Generating the control file..."
+	echo "# DON'T MANUALLY MODIFY!" > debian/control.tmp
+	echo "# EDIT debian/control.in INSTEAD!" >> debian/control.tmp
+	echo "#" >> debian/control.tmp
+	cat debian/control.in >> debian/control.tmp
+	sed -i "s,%SUPPORTED_ARCHITECTURES%,$(strip $(sort $(OPENMPI_ARCHITECTURES) $(MPICH_ARCHITECTURES))),g" debian/control.tmp
+	sed -i "s,%OPENMPI_ARCHITECTURES%,$(strip $(sort $(OPENMPI_ARCHITECTURES))),g" debian/control.tmp
+	sed -i "s,%MPICH_ARCHITECTURES%,$(strip $(sort $(MPICH_ARCHITECTURES))),g" debian/control.tmp
+	set -e ; if ! diff -q debian/control debian/control.tmp > /dev/null; then \
+		echo ;\
+		echo "The generated control file differs from the actual one." ;\
+		echo "A sourceful upload of this package is needed." ;\
+		echo ;\
+		echo "Differences:" ;\
+		diff -u debian/control debian/control.tmp ;\
+	else \
+		rm debian/control.tmp ;\
+	fi

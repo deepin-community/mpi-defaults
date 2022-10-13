@@ -1,0 +1,266 @@
+mpi-defaults (1.14.1-1+deepin) UNRELEASED; urgency=medium
+
+  * update
+
+ -- Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>  Thu, 28 Jul 2022 13:58:28 +0800
+
+mpi-defaults (1.14.1-1+deepin) unstable; urgency=medium
+
+  * Add sunway support.
+
+ -- Miao Changwei <miaochangwei@uniontech.com>  Wed, 04 May 2022 01:37:59 +0800
+
+mpi-defaults (1.14) unstable; urgency=medium
+
+  * Team upload.
+  * Change sh4 and m68k from mpich to openmpi.  Closes: #853029
+  * Bump debhelper compat level to 13
+    + Use the new debhelper-compat (=13) notation and remove d/compat.
+  * d/control: Bump Standards-Version to 4.5.1, no changes needed.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Wed, 04 Aug 2021 15:46:55 +0200
+
+mpi-defaults (1.13) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Manuel A. Fernandez Montecelo ]
+  * Add support for riscv64, default to openmpi.  Closes: #895748
+
+  [ Mattia Rizzolo ]
+  * Fix FTBFS also on m68k and sh4.  Closes: #896110
+  * Set Rules-Requires-Root: no.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Tue, 01 May 2018 18:19:56 +0200
+
+mpi-defaults (1.12) unstable; urgency=medium
+
+  * Team upload.
+  * Fix check for mpi alternatives
+
+ -- Andreas Tille <tille@debian.org>  Thu, 19 Apr 2018 15:43:42 +0200
+
+mpi-defaults (1.11) unstable; urgency=medium
+
+  [ Andreas Tille ]
+  * Team upload.
+  * Remove "Adam C. Powell, IV" <hazelsct@debian.org> from uploaders since
+    he is not active in Debian Science team since 5 years.
+    Closes: #547460
+  * Standards-Version: 4.1.4
+
+  [ Mattia Rizzolo ]
+  * Add a README.source with details on how to change the default mpi
+    implementation of an architecture.
+
+ -- Andreas Tille <tille@debian.org>  Thu, 19 Apr 2018 13:31:37 +0200
+
+mpi-defaults (1.10) unstable; urgency=medium
+
+  [ James Clarke ]
+  * Team upload.
+
+  [ Alastair McKinstry ]
+  * Change control.in to match control
+
+  [ James Clarke ]
+  * Add ia64 using openmpi
+  * Bump debhelper compat level to 11
+  * Use https for copyright format URI
+  * Bump standards version to 4.1.3, no changes needed
+  * Change deprecated extra priority to optional
+  * Update Vcs-* to point to salsa
+
+ -- James Clarke <jrtc27@debian.org>  Mon, 05 Feb 2018 12:29:49 +0000
+
+mpi-defaults (1.9) unstable; urgency=medium
+
+  * Team upload
+  * Standards-Version: 4.1.0
+  * Add m68k to OPENMPI_AVAILABLE_ARCHITECTURES
+  * Add powerpcspe to MPICH_AVAILABLE_ARCHITECTURES. Closes: #872911
+  * Set DH_COMPAT=10 and change debhelper dep
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Mon, 28 Aug 2017 10:54:20 +0100
+
+mpi-defaults (1.8) unstable; urgency=medium
+
+  * Team upload
+  * Cope with multi-arch openmpi.  Closes: #848797
+  * Add myself to Uploaders.
+
+ -- Alastair McKinstry <mckinstry@debian.org>  Mon, 26 Dec 2016 09:08:47 +0000
+
+mpi-defaults (1.7) unstable; urgency=medium
+
+  * Team upload.
+  * Change hppa from MPICH to OpenMPI.  Closes: #833425
+  * Make sure architecture lists are sorted.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Thu, 04 Aug 2016 11:38:16 +0000
+
+mpi-defaults (1.6) unstable; urgency=medium
+
+  * Team upload.
+  * Add powerpcspe again, using openmpi.  Closes: #821179
+
+ -- Mattia Rizzolo <mattia@debian.org>  Sat, 16 Apr 2016 14:34:59 +0000
+
+mpi-defaults (1.5) unstable; urgency=medium
+
+  * Team upload.
+  * Make sure there are no trailing whitespaces in the produced debian_defaults.
+  * debian/control: Bump Standards-Version to 3.9.8, no changes needed.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Mon, 11 Apr 2016 11:09:02 +0000
+
+mpi-defaults (1.4) unstable; urgency=medium
+
+  * Team upload.
+  * Reinstate accidentally removed mips64el support (default: OpenMPI).
+
+ -- Mattia Rizzolo <mattia@debian.org>  Mon, 29 Feb 2016 12:12:41 +0000
+
+mpi-defaults (1.3) unstable; urgency=medium
+
+  * Team upload.
+  * Add myself to debian/copyright.
+  * Add a static list of
+    + OPENMPI_ARCHITECTURES: architectures which defaults to OpenMPI
+    + MPICH_ARCHITECTURES: architectures which defaults to MPICH
+    + OPENMPI_AVAILABLE_ARCHITECTURES: architectures where OpenMPI is available
+    + MPICH_AVAILABLE_ARCHITECTURES: architectures where MPICH is available
+    and export them in debian_defaults.
+    This way we can avoid having dozens of packages hardcoding their own list
+    needing update every new architecture is present or changed, and having them
+    just re-uploaded.  Closes: #814943
+  * Generate debian/control out of those list of known architectures.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Mon, 29 Feb 2016 10:49:47 +0000
+
+mpi-defaults (1.2) unstable; urgency=medium
+
+  * Team upload.
+  * Add a README with a small note to remember there are packages needed
+    sourceful updates when changing the defaults.
+  * Use openmpi on x32 too.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Wed, 10 Feb 2016 20:18:28 +0000
+
+mpi-defaults (1.1) unstable; urgency=medium
+
+  * Team upload.
+  * Use https in the Vcs-* fields.
+  * Bump debhelper compat level to 9.
+  * Fix path of debian_defaults file in README.Debian.
+  * Use the cleaner dh sequencer in d/rules.
+  * Bump Standards-Version to 3.9.7, no changes needed.
+  * Covert d/copyright to copyright-format 1.0.
+  * Drop support for s390, it's not a thing anymore since wheezy.
+  * Switch to openmpi on s390x.  Closes: #813691
+
+ -- Mattia Rizzolo <mattia@debian.org>  Wed, 10 Feb 2016 10:41:49 +0000
+
+mpi-defaults (1.0.2+nmu2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Switch to openmpi on arm64, powerpcspe, ppc64 and ppc64el.
+    Closes: #748510, #731646.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 07 Aug 2014 10:26:43 +0200
+
+mpi-defaults (1.0.2+nmu1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Switch to openmpi on mips/mipsel
+    Same patch by Aurelien Jarno and Jurica Stanojkovic
+    Closes: #733275, #738571
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Thu, 20 Feb 2014 08:59:23 +0000
+
+mpi-defaults (1.0.2) unstable; urgency=low
+
+  * Team upload
+  * Fix the logic of debian/rules: it was broken by the renaming of mpich2
+    to mpich in the alternatives system
+  * Update all dependencies to the new libmpich-dev and mpich packages (instead
+    of the transitional packages libmpich2-dev and mpich2)
+  * Replace MPICH2 by MPICH in package descriptions
+  * Use canonical URLs in Vcs-* fields
+
+ -- Sébastien Villemot <sebastien@debian.org>  Sat, 26 Oct 2013 13:35:29 +0000
+
+mpi-defaults (1.0.1) unstable; urgency=low
+
+  * Team upload
+  * Upload in unstable
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Update of the description (clearly state that it is a metapackage)
+  * Update of the target in debian/rules to match the policy
+  * Fix the lintian warning debian-rules-missing-recommended-target
+
+ -- Sylvestre Ledru <sylvestre@debian.org>  Sun, 04 Dec 2011 20:43:30 +0100
+
+mpi-defaults (1.0) experimental; urgency=low
+
+  * Use MPICH2 instead of LAM on architectures not supported by
+    Open MPI. Closes: #555653.
+  * Updated list of architectures where Open MPI is supported.
+    Closes: #553701, #627239.
+  * Dropped MPICH from the list of known MPI implementations.
+  * Updated Standards-Version to 3.9.2. No changes needed.
+  * Added ${misc:Depends} to Depends fields to fix lintian warning.
+  * Removed versioned Build-Dependency of debhelper.
+
+ -- Manuel Prinz <manuel@debian.org>  Thu, 19 May 2011 22:59:37 +0200
+
+mpi-defaults (0.6) unstable; urgency=low
+
+  * Set Standards-Version to 3.8.2. No changes needed.
+  * Added lpia to list of supported architectures, defaulting to
+    Open MPI. Thanks to Steven Susbauer! (Closes: #532643)
+
+ -- Manuel Prinz <manuel@debian.org>  Wed, 01 Jul 2009 12:55:41 +0200
+
+mpi-defaults (0.5) unstable; urgency=low
+
+  * Fix folding in Build-Depends, backslashes are no longer allowed by
+    dpkg-dev (>= 1.15.3), fixing FTBFS with newer versions. Thanks to
+    Cyril Brulebois for the patch! (Closes: #535230)
+
+ -- Manuel Prinz <manuel@debian.org>  Wed, 01 Jul 2009 11:14:52 +0200
+
+mpi-defaults (0.4) unstable; urgency=low
+
+  * debian/control: Fixed broken dependency line. (Closes: #520141)
+  * Made LAM default on Sparc.
+
+ -- Manuel Prinz <manuel@debian.org>  Mon, 23 Mar 2009 22:37:14 +0100
+
+mpi-defaults (0.3) unstable; urgency=low
+
+  [ Manuel Prinz ]
+  * Added myself to Uploaders.
+  * Changed section of mpi-default-bin to "net" (Closes: #509782)
+  * Mode LAM default on alpha, since Open MPI still has build issues.
+  * Made Open MPI default on GNU/kFreeBSD. Thanks to Petr Salinger for
+    the patch! (Closes: #513219)
+  * Provide /usr/share/mpi-defaults-dev/debian_defaults with architecture-
+    dependent information about the default MPI implementation, so build
+    scripts can use it. Thanks to Daniel Leidert for the suggestion!
+    (Closes: #518653)
+
+ -- Manuel Prinz <manuel@debian.org>  Sat, 14 Mar 2009 15:15:10 +0100
+
+mpi-defaults (0.2) unstable; urgency=low
+
+  * Changed debhelper build-dep version to harmonize with compat.
+  * Added binary-indep target (D'oh!).
+
+ -- "Adam C. Powell, IV" <hazelsct@debian.org>  Fri, 05 Dec 2008 23:09:25 +0900
+
+mpi-defaults (0.1) unstable; urgency=low
+
+  * First cut package for setting default MPI dependencies.
+
+ -- "Adam C. Powell, IV" <hazelsct@debian.org>  Thu, 20 Nov 2008 09:34:00 -0500

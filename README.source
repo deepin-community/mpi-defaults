@@ -1,0 +1,12 @@
+## Changing the default MPI implementation of an architecture
+
+Changing the default is not as easy as flipping a switch, it requires an ordered
+rebuild of all packages linking libopempi/libmpich and using (even indirectly)
+mpi-defaults.
+
+See https://bugs.debian.org/814936 for an example of how to properly handle the
+change.
+For ports architectures, please contact the porters to have them track the
+transition and schedule rebuilds.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Mon, 05 Feb 2018 17:16:55 +0100

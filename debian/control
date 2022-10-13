@@ -1,0 +1,41 @@
+# DON'T MANUALLY MODIFY!
+# EDIT debian/control.in INSTEAD!
+#
+Source: mpi-defaults
+Section: devel
+Priority: optional
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Manuel Prinz <manuel@debian.org>,
+ Alastair McKinstry <mckinstry@debian.org>,
+Build-Depends:
+ debhelper-compat (= 13),
+ libopenmpi-dev (>= 1.4.3-2.1) [alpha amd64 arm64 armel armhf hppa hurd-i386 i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k mips mips64el mipsel powerpc powerpcspe ppc64 ppc64el riscv64 s390x sh4 sparc64 sw64 x32],
+ openmpi-bin (>= 1.4.3-2.1) [alpha amd64 arm64 armel armhf hppa hurd-i386 i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k mips mips64el mipsel powerpc powerpcspe ppc64 ppc64el riscv64 s390x sh4 sparc64 sw64 x32],
+# libmpich-dev [],
+# mpich []
+Rules-Requires-Root: no
+Standards-Version: 4.5.1
+Vcs-Browser: https://salsa.debian.org/science-team/mpi-defaults
+Vcs-Git: https://salsa.debian.org/science-team/mpi-defaults.git
+
+Package: mpi-default-dev
+Architecture: alpha amd64 arm64 armel armhf hppa hurd-i386 i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k mips mips64el mipsel powerpc powerpcspe ppc64 ppc64el riscv64 s390x sh4 sparc64 sw64 x32
+Section: libdevel
+Depends: ${mpi-dev}, ${misc:Depends}
+Description: Standard MPI development files (metapackage)
+ This metapackage depends on the development files of the recommended MPI
+ implementation for each platform, currently Open MPI on all of the platforms
+ where it exists, and MPICH on the others. The package which this depends on
+ has alternatives links for the shared libraries libmpi and libmpi++, and for
+ compilers mpicc, mpic++/mpicxx/mpiCC, mpif77 and mpi90 and their manpages.
+
+Package: mpi-default-bin
+Architecture: alpha amd64 arm64 armel armhf hppa hurd-i386 i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k mips mips64el mipsel powerpc powerpcspe ppc64 ppc64el riscv64 s390x sh4 sparc64 sw64 x32
+Section: net
+Depends: ${mpi}, ${misc:Depends}
+Description: Standard MPI runtime programs (metapackage)
+ This metapackage depends on the runtime programs of the recommended MPI
+ implementation for each platform, currently Open MPI on all of the platforms
+ where it exists, and MPICH on the others. The package which this depends on
+ has alternatives links for mpirun and mpiexec.

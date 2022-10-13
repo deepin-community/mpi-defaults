@@ -1,0 +1,38 @@
+Source: mpi-defaults
+Section: devel
+Priority: optional
+Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+Uploaders:
+ Manuel Prinz <manuel@debian.org>,
+ Alastair McKinstry <mckinstry@debian.org>,
+Build-Depends:
+ debhelper-compat (= 13),
+ libopenmpi-dev (>= 1.4.3-2.1) [%OPENMPI_ARCHITECTURES%],
+ openmpi-bin (>= 1.4.3-2.1) [%OPENMPI_ARCHITECTURES%],
+# libmpich-dev [%MPICH_ARCHITECTURES%],
+# mpich [%MPICH_ARCHITECTURES%]
+Rules-Requires-Root: no
+Standards-Version: 4.5.1
+Vcs-Browser: https://salsa.debian.org/science-team/mpi-defaults
+Vcs-Git: https://salsa.debian.org/science-team/mpi-defaults.git
+
+Package: mpi-default-dev
+Architecture: %SUPPORTED_ARCHITECTURES%
+Section: libdevel
+Depends: ${mpi-dev}, ${misc:Depends}
+Description: Standard MPI development files (metapackage)
+ This metapackage depends on the development files of the recommended MPI
+ implementation for each platform, currently Open MPI on all of the platforms
+ where it exists, and MPICH on the others. The package which this depends on
+ has alternatives links for the shared libraries libmpi and libmpi++, and for
+ compilers mpicc, mpic++/mpicxx/mpiCC, mpif77 and mpi90 and their manpages.
+
+Package: mpi-default-bin
+Architecture: %SUPPORTED_ARCHITECTURES%
+Section: net
+Depends: ${mpi}, ${misc:Depends}
+Description: Standard MPI runtime programs (metapackage)
+ This metapackage depends on the runtime programs of the recommended MPI
+ implementation for each platform, currently Open MPI on all of the platforms
+ where it exists, and MPICH on the others. The package which this depends on
+ has alternatives links for mpirun and mpiexec.
