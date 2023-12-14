@@ -1,14 +1,14 @@
-mpi-defaults (1.14.1-1+deepin) UNRELEASED; urgency=medium
+mpi-defaults (1.15) unstable; urgency=medium
 
-  * update
+  * Team upload.
+  [ Dandan Zhang ]
+  * Add support for loong64. Closes: #1050845.
+    Both OpenMPI and MPICH are available. OpenMPI is the default.
+  [ Samuel Thibault ]
+  * Add support for hurd-amd64. Closes: #1055458.
+    Both OpenMPI and MPICH are available. OpenMPI is the default.
 
- -- Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>  Thu, 28 Jul 2022 13:58:28 +0800
-
-mpi-defaults (1.14.1-1+deepin) unstable; urgency=medium
-
-  * Add sunway support.
-
- -- Miao Changwei <miaochangwei@uniontech.com>  Wed, 04 May 2022 01:37:59 +0800
+ -- Santiago Vila <sanvila@debian.org>  Mon, 06 Nov 2023 22:25:00 +0100
 
 mpi-defaults (1.14) unstable; urgency=medium
 
