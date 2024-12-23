@@ -36,6 +36,7 @@ OPENMPI_AVAILABLE_ARCHITECTURES := \
 	sh4 \
 	sparc64 \
 	x32 \
+	sw64 \
 
 MPICH_AVAILABLE_ARCHITECTURES := \
 	alpha \
@@ -64,6 +65,7 @@ MPICH_AVAILABLE_ARCHITECTURES := \
 	sh4 \
 	sparc64 \
 	x32 \
+	sw64 \
 
 
 # defaults
@@ -95,6 +97,7 @@ OPENMPI_ARCHITECTURES := \
 	sh4 \
 	sparc64 \
 	x32 \
+	sw64 \
 
 # uncomment the mpich lines in d/control.in if you are going to add something here again
 MPICH_ARCHITECTURES := \
