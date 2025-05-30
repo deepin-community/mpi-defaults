@@ -1,3 +1,9 @@
+mpi-defaults (1.15+deepin1) unstable; urgency=medium
+
+  * feat: add sw64 support.
+
+ -- hudeng <hudeng@deepin.org>  Fri, 30 May 2025 11:18:36 +0800
+
 mpi-defaults (1.15) unstable; urgency=medium
 
   * Team upload.
