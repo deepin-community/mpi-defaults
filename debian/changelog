@@ -1,4 +1,4 @@
-mpi-defaults (1.15+deepin1) unstable; urgency=medium
+mpi-defaults (1.15deepin1) unstable; urgency=medium
 
   * feat: add sw64 support.
 
